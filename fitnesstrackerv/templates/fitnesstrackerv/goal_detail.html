@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<h1><p>
+        <b>Goal: </b>{{ goal.activity_type }} goal to achieve by {{ goal.finishDate }}
+      </p>
+     </h1>
+      <p>
+        <b>Date Started: </b>{{ goal.startDate }}
+      </p>
+      <p>
+        <b>Progress: </b> {{ goal.progress }} %
+      </p>
+      <p>
+        <b>Time to achieve: </b> {{ goal.goal_time }} {{ goal.time_measured_in}}
+      </p> <br>
+      <p><a href="{% url 'update_progress' pk=goal.pk %}">Update goal</p></a><br><br>
+      <p><a href="{% url 'delete_goal' pk=goal.pk %}">Delete goal</p></a>
+
+      <h1>Go back to your list of goals <a href="{% url 'goal_list' %}">here</a></h1>
+
+</body>
+</html>
+

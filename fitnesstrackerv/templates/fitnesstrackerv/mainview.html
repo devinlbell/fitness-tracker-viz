@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fitness Tracker Viz</title>
+</head>
+<body>
+  <h2>Welcome to Fitness Tracker Viz</h2>
+  <p><a href="{% url 'logout' %}">Logout</p></a>
+  {% for goal in goals %}
+    <div>
+      <p>
+        <a href="{% url 'goal_detail' pk=goal.pk %}"><b>Goal: </b>{{ goal.activity_type }} goal to achieve by {{ goal.finishDate }} </a>
+      </p>
+      <p>
+        <b>Date Started: </b>{{ goal.startDate }}
+      </p>
+      <p>
+        <b>Progress: </b> {{ goal.progress }} %
+      </p>
+      <p>
+        <b>Time to achieve: </b> {{ goal.goal_time }} {{ goal.time_measured_in}}
+      </p> <br>
+      <p><a href="{% url 'update_progress' pk=goal.pk %}">Update goal</p></a><br>
+      <p><a href="{% url 'delete_goal' pk=goal.pk %}">Delete goal</p></a>
+  
+    </div><br>
+    
+    {% endfor %}
+    {% if form != '' %}
+    <h2>Set your number here if you'd like to be notified when you achieve a goal</h2>
+    <p>Input your 10 digit number</p>
+    <form method="POST" >{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+  </form>
+  {% endif %}
+  <h3>Create a new goal here</h3>
+  {% if user.is_authenticated %}
+  <h1><a href="{% url 'new_goal' %}">On this link!</a></h1>
+  {% endif %}
+</body>
+</html>

@@ -1,0 +1,25 @@
+<h1>Welcome to Fitness Tracker</h1>
+<p>Log into the site and begin taking steps to achieve your goal</p>
+<form method="post" action="{% url 'django.contrib.auth.views.login' %}"> 
+{% csrf_token %}
+ <table>
+	 <tr>     
+	 	<td>{{ form.username.label_tag }}</td>
+	 	<td>{{ form.username }}</td> 
+	</tr> 
+	 <tr>
+	    <td>{{ form.password.label_tag }}</td>
+	    <td>{{ form.password }}</td> 
+	  </tr>
+</table>
+<input type="submit" value="login" /> 
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+{% if form.errors %} 
+	<p>Your username and password didn't match. Please try again.</p> 
+	<div>
+		<p>Sorry you couldn't get into our site, feel free to look at this picture of the Monkey King until you get a valid username</p><br>
+		<img src="http://asianmoviepulse.com/wp-content/uploads/2012/12/post/kung-fu-flicks-to-check-out-in-2013/213907-donnie-yen-monkey-king-poster-2013-soi-cheang.jpg" alt="Monekey King">
+	</div>
+{% endif %}
